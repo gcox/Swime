@@ -12,8 +12,8 @@ let package = Package(
     .library(name: "SwimeDynamic", type: .dynamic, targets: ["Swime"])
   ],
   dependencies: [
-    .package(url: "https://github.com/Quick/Quick", from: "1.3.4"),
-    .package(url: "https://github.com/Quick/Nimble", from: "7.3.3")
+    .package(url: "https://github.com/Quick/Quick", from: "3.1.2"),
+    .package(url: "https://github.com/Quick/Nimble", from: "9.0.0")
   ],
   targets: [
     .target(

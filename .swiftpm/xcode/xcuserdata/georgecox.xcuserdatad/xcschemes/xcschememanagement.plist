@@ -27,6 +27,11 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>SwimeDynamic</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>SwimeTests</key>
 		<dict>
 			<key>primary</key>
