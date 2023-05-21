@@ -6,3 +6,4 @@
 # Ignored directories
 .build/
 Packages/
+**/xcuserdata
