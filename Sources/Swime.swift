@@ -7,21 +7,21 @@ public struct Swime {
   ///  A static method to get the `MimeType` that matches the given file data
   ///
   ///  - returns: Optional<MimeType>
-  static public func mimeType(data: Data) -> MimeType? {
-    return mimeType(swime: Swime(data: data))
+  public static func mimeType(data: Data) -> MimeType? {
+    mimeType(swime: Swime(data: data))
   }
 
   ///  A static method to get the `MimeType` that matches the given bytes
   ///
   ///  - returns: Optional<MimeType>
-  static public func mimeType(bytes: [UInt8]) -> MimeType? {
-    return mimeType(swime: Swime(bytes: bytes))
+  public static func mimeType(bytes: [UInt8]) -> MimeType? {
+    mimeType(swime: Swime(bytes: bytes))
   }
 
   ///  Get the `MimeType` that matches the given `Swime` instance
   ///
   ///  - returns: Optional<MimeType>
-  static public func mimeType(swime: Swime) -> MimeType? {
+  public static func mimeType(swime: Swime) -> MimeType? {
     let bytes = swime.readBytes(count: min(swime.data.count, 262))
 
     for mime in MimeType.all {
@@ -31,6 +31,33 @@ public struct Swime {
     }
 
     return nil
+  }
+
+  public static func mimeType(url: URL) -> MimeType? {
+    guard let inputStream = InputStream(url: url) else {
+      return nil
+    }
+
+    inputStream.open()
+    defer {
+      inputStream.close()
+    }
+
+    var data = Data()
+    let bufferSize = 262
+    let buffer = UnsafeMutablePointer<UInt8>.allocate(capacity: bufferSize)
+    defer {
+      buffer.deallocate()
+    }
+    while inputStream.hasBytesAvailable {
+      let count = inputStream.read(buffer, maxLength: bufferSize)
+      if count == 0 {
+        break
+      }
+      data.append(buffer, count: count)
+    }
+
+    return mimeType(data: data)
   }
 
   public init(data: Data) {
