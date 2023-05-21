@@ -1,8 +1,11 @@
 import Foundation
 
 func loadFileData(path: String) -> Data {
-  let url = URL(fileURLWithPath: #file)
+  try! Data(contentsOf: loadFileURL(path: path))
+}
+
+func loadFileURL(path: String) -> URL {
+  URL(fileURLWithPath: #file)
     .deletingLastPathComponent()
     .appendingPathComponent(path)
-  return try! Data(contentsOf: url)
 }
