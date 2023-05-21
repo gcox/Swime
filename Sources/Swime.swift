@@ -81,3 +81,31 @@ public struct Swime {
     return bytes
   }
 }
+
+@objc public class SwimeObjC: NSObject {
+  @objc
+  public class func mimeType(url: URL) -> MimeTypeObjC? {
+    guard let mimeType = Swime.mimeType(url: url) else {
+      return nil
+    }
+    return MimeTypeObjC(mimeType: mimeType)
+  }
+}
+
+@objc public class MimeTypeObjC: NSObject {
+  @objc
+  public var mime: String {
+    mimeType.mime
+  }
+
+  @objc
+  public var ext: String {
+    mimeType.ext
+  }
+
+  private let mimeType: MimeType
+
+  public init(mimeType: MimeType) {
+    self.mimeType = mimeType
+  }
+}
