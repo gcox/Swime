@@ -9,8 +9,9 @@ Pod::Spec.new do |s|
   s.homepage     = 'https://github.com/sendyhalim/Swime'
   s.license      = { type: 'MIT', file: 'LICENSE' }
   s.author = { 'Sendy Halim' => 'sendyhalim93@gmail.com' }
-  s.ios.deployment_target = '9.0'
-  s.osx.deployment_target = '10.10'
+  s.ios.deployment_target = '14.7'
+  s.watchos.deployment_target = '7.1.0'
+  s.osx.deployment_target = '10.15'
   s.social_media_url = 'https://github.com/sendyhalim'
   s.source = { git: 'https://github.com/sendyhalim/Swime.git', tag: s.version }
   s.source_files = 'Sources/**/*.{swift}'
