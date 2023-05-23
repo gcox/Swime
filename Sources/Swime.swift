@@ -54,7 +54,15 @@ public struct Swime {
       if count == 0 {
         break
       }
+      if count == -1 {
+        // Throw error
+        break
+      }
       data.append(buffer, count: count)
+      if data.count >= bufferSize {
+        // We only want the first 262 bytes
+        break
+      }
     }
 
     return mimeType(data: data)
