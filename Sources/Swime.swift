@@ -55,8 +55,8 @@ public struct Swime {
         break
       }
       if count == -1 {
-        // Throw error
-        break
+        // Convert function to throwing and throw here
+        return nil
       }
       data.append(buffer, count: count)
       if data.count >= bufferSize {
