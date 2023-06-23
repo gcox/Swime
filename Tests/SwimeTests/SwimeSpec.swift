@@ -50,6 +50,7 @@ class SwimeSpec: QuickSpec {
         "jpg",
         "jxr",
         "m4a",
+        "m4b",
         "m4v",
         "mid",
         "mkv",

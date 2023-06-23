@@ -31,6 +31,7 @@ public enum FileType {
   case jxr
   case lz
   case m4a
+  case m4b
   case m4v
   case mid
   case mkv
@@ -299,6 +300,22 @@ public struct MimeType {
       }
     ),
     MimeType(
+      mime: "audio/mp4",
+      ext: "m4b",
+      type: .m4b,
+      bytesCount: 12,
+      matches: { bytes, _ in
+        bytes[0...2] == [0x00, 0x00, 0x00]
+        && bytes[4...7] == [0x66, 0x74, 0x79, 0x70]
+        && (bytes[8] & 0x60) != 0x00
+        && (bytes[9] & 0x60) != 0x00
+        && (bytes[10] & 0x60) != 0x00
+        && (bytes[11] & 0x60) != 0x00
+        && String(data: Data(bytes[8..<12]), encoding: .utf8)?.uppercased() == "M4B "
+      }
+    ),
+
+    MimeType(
       mime: "video/mp4",
       ext: "mp4",
       type: .mp4,
@@ -475,7 +492,6 @@ public struct MimeType {
           (bytes[4...10] == [0x66, 0x74, 0x79, 0x70, 0x4D, 0x34, 0x41])
       }
     ),
-
     // Needs to be before `ogg` check
     MimeType(
       mime: "audio/opus",
