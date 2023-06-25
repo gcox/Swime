@@ -300,7 +300,7 @@ public struct MimeType {
       }
     ),
     MimeType(
-      mime: "audio/mp4",
+      mime: "audio/m4a",
       ext: "m4b",
       type: .m4b,
       bytesCount: 12,
@@ -314,7 +314,6 @@ public struct MimeType {
         && String(data: Data(bytes[8..<12]), encoding: .utf8)?.uppercased() == "M4B "
       }
     ),
-
     MimeType(
       mime: "video/mp4",
       ext: "mp4",
