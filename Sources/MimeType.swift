@@ -300,7 +300,7 @@ public struct MimeType {
       }
     ),
     MimeType(
-      mime: "audio/m4a",
+      mime: "audio/x-m4a",
       ext: "m4b",
       type: .m4b,
       bytesCount: 12,
